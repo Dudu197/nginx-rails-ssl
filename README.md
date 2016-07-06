@@ -19,14 +19,14 @@
     # apt-get -y install git bc
  ```
  
- ### 2. Clone the repository
+### 2. Clone the repository
   Now we are going to download the latest version of the Let's Encrypt repository:
   Here we`ll save in /opt, but feel free to change the directory. Just make sure to use this directory in the next steps. 
  ```bash
     # git clone https://github.com/letsencrypt/letsencrypt /opt/letsencrypt
  ```
  
- ### 3. Generate the certificate
+### 3. Generate the certificate
   Ok, everything is set up to we generate our certificate, so, let's do this!
   For this example, we'll use domain.com as our domain.
   
@@ -39,7 +39,7 @@
   ```
   `If you need more than one domain, just add in the final, separating by spaces`
   
-  ### 4. Add the certificate to Nginx server
+### 4. Add the certificate to Nginx server
    Now we need to make sure Nginx has the right config, so, let`s add this to your server block.
    
    Just remember to replace domain.com for your first domain when you generated the certificates.
@@ -57,7 +57,7 @@
     add_header Strict-Transport-Security max-age=15768000;
    ```
    
-   ### 5. Restart Nginx
+### 5. Restart Nginx
    We are ready to recieve https connections, just restart ou reload your Nginx.
    
    **Restart**
@@ -71,7 +71,7 @@
     # /etc/init.d/nginx reload
    ```
    
-   ### 6. Force HTTPS connections
+### 6. Force HTTPS connections
    Now, let's force use https instead http, for this, add the following to your `application.rb`, but only for production, we don`t need this in localhost.
    
    ```ruby
@@ -80,7 +80,7 @@
     end
    ```
    
-   ### 7. Renew your certificates
+### 7. Renew your certificates
    The certificates aren`t forever, to we need to renew them. But we can make this automatic, let's just creating an crontab for this.
    ```bash
     # crontab -e
@@ -90,6 +90,6 @@
     1 1 1 * * /opt/letsencrypt/letsencrypt-auto renew
    ```
    
-   ## Finished!
+## Finished!
    Your website now have SSL, now go have fun with your new security.
    
