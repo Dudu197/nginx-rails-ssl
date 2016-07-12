@@ -37,7 +37,7 @@
     # cd /opt/letsencrypt
     # ./letsencrypt-auto certonly -a webroot --webroot-path=/var/www/project/public -d domain.com
   ```
-  `If you need more than one domain, just add in the final, separating by spaces`
+  `If you need more than one domain, just add '-d domain2.com' in the final, as you want.`
   
 ### 4. Add the certificate to Nginx server
    Now we need to make sure Nginx has the right config, so, let`s add this to your server block.
