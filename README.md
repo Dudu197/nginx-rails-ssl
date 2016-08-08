@@ -27,17 +27,32 @@
  ```
  
 ### 3. Generate the certificate
+  Before start, let's setup our server config.
+  Go to the server block in your nginx configuration and add this, replacing yourHome to your current user:
+  ´´´
+   location /.well-known/acme-challenge {
+    root /home/yourHome/letsencrypt;
+   }
+  ´´´
+  Now, let's create the directory, if not exsits.
+  ´´´bash
+   cd /home/yourHome
+   mkdir letsencrypt
+   mkdir letsencrypt/.well-known
+   mkdir letsencrypt/.well-known/acme-challenge
+  ´´´
+  
   Ok, everything is set up to we generate our certificate, so, let's do this!
   For this example, we'll use domain.com as our domain.
   
   If is your first time, or from a long time, this should update, so, it will take a while.
   
-  `Replace the '/var/www/project' for your app path`
+  `Replace the 'yourHome' for your current user`
   ```bash
     # cd /opt/letsencrypt
-    # ./letsencrypt-auto certonly -a webroot --webroot-path=/var/www/project/public -d domain.com
+    # ./letsencrypt-auto certonly -a webroot --webroot-path=/home/letsencrypt -d domain.com
   ```
-  `If you need more than one domain, just add '-d domain2.com' in the final, as you want.`
+  `If you need more than one domain, just add '-d domain2.com' in the end, as you want.`
   
 ### 4. Add the certificate to Nginx server
    Now we need to make sure Nginx has the right config, so, let`s add this to your server block.
@@ -82,13 +97,13 @@
    ```
    
 ### 7. Renew your certificates
-   The certificates aren`t forever, to we need to renew them. But we can make this automatic, let's just creating an crontab for this.
+   The certificates aren`t forever, to we need to renew them. But we can make this automatic, let's just creating an crontab for this (user must be sudo).
    ```bash
     # crontab -e
    ```
    Then, add this line:
    ```
-    1 1 1 * * /opt/letsencrypt/letsencrypt-auto renew
+    1 1 1 * * /opt/letsencrypt/letsencrypt-auto renew -a webroot --webroot-path=/home/yourHome/letsencrypt
    ```
    
 ## Finished!
