@@ -34,7 +34,7 @@
     root /home/yourHome/letsencrypt;
    }
   ```
-  Now, let's create the directory, if not exsits.
+  Now, let's create the directory, if not exists.
   ```bash
    cd /home/yourHome
    mkdir letsencrypt
