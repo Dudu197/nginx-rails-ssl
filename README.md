@@ -29,18 +29,18 @@
 ### 3. Generate the certificate
   Before start, let's setup our server config.
   Go to the server block in your nginx configuration and add this, replacing yourHome to your current user:
-  ´´´
+  ```
    location /.well-known/acme-challenge {
     root /home/yourHome/letsencrypt;
    }
-  ´´´
+  ```
   Now, let's create the directory, if not exsits.
-  ´´´bash
+  ```bash
    cd /home/yourHome
    mkdir letsencrypt
    mkdir letsencrypt/.well-known
    mkdir letsencrypt/.well-known/acme-challenge
-  ´´´
+  ```
   
   Ok, everything is set up to we generate our certificate, so, let's do this!
   For this example, we'll use domain.com as our domain.
