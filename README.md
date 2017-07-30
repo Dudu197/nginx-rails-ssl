@@ -87,6 +87,11 @@
     # /etc/init.d/nginx reload
    ```
    
+   If nginx can't find the file "/etc/ssl/certs/dhparam.pem", just run this:
+   ```bash
+   # openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+   ```
+   
 ### 6. Force HTTPS connections
    Now, let's force use https instead http, for this, add the following to your `application.rb`, but only for production, we don`t need this in localhost.
    
